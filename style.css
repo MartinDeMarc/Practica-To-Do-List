@@ -1,0 +1,276 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100%;
+  height: 100vh;
+  padding: 10px;
+  background-image: linear-gradient(to right, #272727 0%, black 100%);
+}
+
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(to right, #f83600 0%, #f9d423 100%);
+  clip-path: circle(22% at 30% 20%);
+}
+
+body::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(to right, #4481eb 0%, #04befe 100%);
+  clip-path: circle(20% at 70% 90%);
+}
+
+.parent {
+  background: #fff;
+  max-width: 400px;
+  width: 100%;
+  margin: 120px auto;
+  padding: 25px;
+  position: relative;
+  background: rgba(225, 225, 225, 0.05);
+  border: 12px;
+  overflow: hidden;
+  z-index: 10;
+  backdrop-filter: blur(15px);
+  border-top: 1px solid rgba(225, 225, 225, 0.2);
+  border-left: 1px solid rgba(225, 225, 225, 0.2);
+  box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.2);
+}
+
+.todolist li {
+  margin-right: 8px;
+}
+
+.todolist::-webkit-scrollbar {
+  width: 6px;
+  padding: 0 0.5rem;
+}
+
+.todolist::-webkit-scrollbar-track {
+  background: transparent;
+  margin: 0 1rem;
+  border-radius: 50px;
+}
+
+.todolist::-webkit-scrollbar-thumb {
+  background: #292a2e;
+  border-radius: 50px;
+}
+.todolist::-webkit-scrollbar-thumb:hover {
+  background: #1d1e20;
+  border-radius: 50px;
+}
+
+.parent header {
+  font-size: 20px;
+  font-weight: 600;
+  text-align: center;
+  color: #e0e0e0;
+}
+
+.parent .inputArea {
+  margin: 20px 0;
+  width: 100%;
+  height: 45px;
+  display: flex;
+}
+
+.inputArea input {
+  width: 85%;
+  height: 100%;
+  outline: none;
+  border-radius: 3px;
+  font-size: 17px;
+  padding-left: 15px;
+  transition: all 0.3s, ease;
+  background-color: rgba(225, 225, 225, 0.2);
+  backdrop-filter: blur(15px);
+  border: 0;
+  box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.2);
+  border-radius: 50px;
+  color: #a7a7a7;
+}
+
+.inputArea input:focus {
+  background-color: rgba(0, 0, 0, 0.61);
+}
+
+.inputArea button {
+  width: 50px;
+  height: 50px;
+  border: none;
+  color: #fff;
+  margin-left: 5px;
+  font-size: 21px;
+  outline: none;
+  background: rgba(225, 225, 225, 0.05);
+  backdrop-filter: blur(15px);
+  border-top: 1px solid rgba(225, 225, 225, 0.2);
+  border-left: 1px solid rgba(225, 225, 225, 0.2);
+  box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  border-radius: 50%;
+  opacity: 0.6;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+.inputarea button:hover,
+.button button:hover {
+  background: rgba(0, 0, 0, 0.589);
+  backdrop-filter: blur(15px);
+  border-top: 1px solid rgba(225, 225, 225, 0.2);
+  border-left: 1px solid rgba(225, 225, 225, 0.2);
+  box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.418);
+}
+
+.inputArea button.active {
+  opacity: 1;
+  pointer-events: auto;
+  animation: rot 0.5s linear;
+}
+
+@keyframes rot {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(90deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  75% {
+    transform: rotate(270deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.parent .todolist {
+  max-width: 250px;
+  overflow-y: auto;
+}
+
+.todolist li {
+  position: relative;
+  list-style: none;
+  height: 45px;
+  line-height: 45px;
+  margin-bottom: 8px;
+  background: transparent;
+  border-left: 1px solid rgba(225, 225, 225, 0.2);
+  border-bottom: 1px solid rgba(225, 225, 225, 0.2);
+  box-shadow: 0 0 5px rgba(107, 107, 107, 0.267);
+  color: #fff;
+  border-radius: 3px;
+  padding: 0 15px;
+  cursor: default;
+  overflow: hidden;
+  border-radius: 50px;
+}
+
+.todolist li .icon {
+  width: 45px;
+  height: 45px;
+  position: absolute;
+  right: -45px;
+  width: 45px;
+  text-align: center;
+  color: rgba(207, 207, 207);
+  border-radius: 0 3px 3px 0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-radius: 50%;
+}
+
+.todolist li .icon:active {
+  background: rgba(77, 77, 77, 0.747);
+  opacity: 0.5;
+}
+.todolist li:hover .icon {
+  animation: rotdit 0.5s linear;
+  right: 0px;
+}
+
+@keyframes rotdit {
+  0% {
+    opacity: 0;
+    transform: rotate(0deg);
+  }
+  25% {
+    opacity: 0.2;
+    transform: rotate(90deg);
+  }
+  50% {
+    opacity: 0.5;
+    transform: rotate(180deg);
+  }
+  75% {
+    opacity: 0.7;
+    transform: rotate(270deg);
+  }
+  100% {
+    opacity: 1;
+    transform: rotate(360deg);
+  }
+}
+
+.parent .bottom {
+  display: flex;
+  width: 100%;
+  margin-top: 20px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.bottom {
+  color: #fff;
+}
+
+.bottom button {
+  padding: 6px 10px;
+  border-radius: 3px;
+  border: none;
+  outline: none;
+  color: #fff;
+  font-weight: 400;
+  font-size: 16px;
+  margin-left: 5px;
+  background-color: rgba(65, 65, 65, 0.534);
+  backdrop-filter: blur(8px);
+  box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.26);
+  cursor: pointer;
+  user-select: none;
+  opacity: 0.6;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border-radius: 50px;
+}
+
+.pendingTask {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: #5a5a5abd;
+  height: 30px;
+  width: 30px;
+  color: #e0e0e0;
+  border-radius: 50%;
+}
