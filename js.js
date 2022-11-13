@@ -50,4 +50,24 @@ function showTasks() {
     deleteAllBtn.classList.remove("active");
   }
   let newLiTag = "";
+  listaArray.forEach((element, index) => {
+    newLiTag += `<li>${element}<span class="icon" onclick="deleteTask(${index})"<i class="fa-solid fa-trash"></i></span></li>`;
+  });
+  todoList.innerHTML = newLiTag;
+  inputBox.value = "";
 }
+
+function deleteTask(index) {
+  let getLocalStorageData = localStorage.getItem("New Todo");
+  listaArray = JSON.parse(getLocalStorageData);
+  listaArray.splice(index, 1);
+  localStorage.setItem("New Todo", JSON.stringify(listaArray));
+  showTasks();
+}
+
+deleteAllBtn.onclick = () => {
+  listaArray = [];
+  localStorage.setItem("New Todo", JSON.stringify(listaArray));
+  showTasks();
+};
+
