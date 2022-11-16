@@ -1,12 +1,32 @@
 const date = document.querySelector(".date");
+const time = document.querySelector(".time");
 const inputBox = document.querySelector(".inputArea input");
 const addBtn = document.querySelector(".inputArea button");
 const todoList = document.querySelector(".todolist");
 const deleteAllBtn = document.querySelector(".bottom button");
 const btnCheckBox = document.querySelector(".todoList li input");
 const finishedTasksItem = document.querySelector(".finishedTasks");
-const time = document.querySelector(".time");
 let finishedTasks = 0;
+
+function watchDigital() {
+  let local = new Date(),
+    date = local.getDate(),
+    month = local.getMonth() + 1,
+    anio = local.getFullYear(),
+    diaSemana = local.getDay();
+
+  dia = ("0" + date).slice(-2);
+
+  mes = ("0" + month).slice(-2);
+
+  let timeString = local.toLocaleTimeString();
+
+  time.innerHTML = timeString;
+}
+
+setInterval(() => {
+  watchDigital();
+}, 1000);
 
 const DATE = new Date();
 date.innerHTML = DATE.toLocaleDateString("es-MX", {
