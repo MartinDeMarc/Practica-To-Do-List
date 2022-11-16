@@ -3,6 +3,10 @@ const inputBox = document.querySelector(".inputArea input");
 const addBtn = document.querySelector(".inputArea button");
 const todoList = document.querySelector(".todolist");
 const deleteAllBtn = document.querySelector(".bottom button");
+const btnCheckBox = document.querySelector(".todoList li input");
+const finishedTasksItem = document.querySelector(".finishedTasks");
+const time = document.querySelector(".time");
+let finishedTasks = 0;
 
 const DATE = new Date();
 date.innerHTML = DATE.toLocaleDateString("es-MX", {
@@ -51,7 +55,7 @@ function showTasks() {
   }
   let newLiTag = "";
   listaArray.forEach((element, index) => {
-    newLiTag += `<li>${element}<span class="icon" onclick="deleteTask(${index})"<i class="fa-solid fa-trash"></i></span></li>`;
+    newLiTag += `<li> <input type="checkbox" onclick="btncheckf()">${element}<span class="icon" onclick="deleteTask(${index})"<i class="fa-solid fa-trash"></i></span></li>`;
   });
   todoList.innerHTML = newLiTag;
   inputBox.value = "";
@@ -71,3 +75,12 @@ deleteAllBtn.onclick = () => {
   showTasks();
 };
 
+function btncheckf(index) {
+  let getLocalStorageData = localStorage.getItem("New Todo");
+  listaArray = JSON.parse(getLocalStorageData);
+  listaArray.splice(index, 1);
+  localStorage.setItem("New Todo", JSON.stringify(listaArray));
+  showTasks();
+  finishedTasks++;
+  finishedTasksItem.innerHTML = finishedTasks.toString();
+}
